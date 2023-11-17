@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e8e3e3; /* Change the background color as needed */
+}
+
+.icon-container {
+    text-align: center;
+    margin: 10px; /* Adjust the margin value as needed */
+}
+
+.icon {
+    font-size: 4em;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px; /* Adjust the padding value as needed */
+    background-color: #ffffff; /* Icon background color */
+    border-radius: 10px; /* Adjust the border-radius value as needed */
+}
+
+.label {
+    margin-top: 10px; /* Adjust the margin-top value as needed */
+}
+
+.button {
+    margin-top: 10px; /* Adjust the margin-top value as needed */
+    font-weight: bold; /* Make the text bold */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Use a professional font */
+    padding: 8px 16px; /* Adjust the padding for the button */
+    border: 1px solid #83b8da; /* Button border color */
+    background-color: #348adb; /* Button background color */
+    color: #ffffff; /* Button text color */
+    cursor: pointer;
+    border-radius: 20px; /* Adjust the border-radius value as needed */
+}
+
+.button:hover {
+    background-color: #4b92c2; /* Change the background color on hover */
+    border: 1px solid #4391c4; /* Change the border color on hover */
+}
