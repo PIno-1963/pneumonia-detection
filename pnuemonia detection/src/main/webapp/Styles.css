@@ -11,6 +11,10 @@ body {
     background-color: #e8e3e3; /* Change the background color as needed */
 }
 
+.form-container {
+    display: flex;
+}
+
 .icon-container {
     text-align: center;
     margin: 10px; /* Adjust the margin value as needed */
@@ -44,4 +48,15 @@ body {
 .button:hover {
     background-color: #4b92c2; /* Change the background color on hover */
     border: 1px solid #4391c4; /* Change the border color on hover */
+}
+
+.heading {
+    text-align: center;
+    font-family: 'Poppins', sans-serif, Arial;
+    font-size: 35px;
+    margin-bottom: 20px; /* Adjust the margin-bottom as needed */
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
 }
