@@ -27,7 +27,22 @@ public class Servlet extends HttpServlet {
             // Handle other roles or invalid cases
             response.getWriter().println("Invalid role");
         }
+
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        DoctorDao doctorDAO = new DoctorDao();
+        if (doctorDAO.login(email, password)) {
+            // Successful login, redirect to a doctor's dashboard or another page
+            response.sendRedirect("doctor_dashboard.jsp");
+        } else {
+            // Failed login, redirect back to the login page with an error message
+            response.sendRedirect("doctor-login.jsp?error=1");
+        }
     }
 }
+
 
 
