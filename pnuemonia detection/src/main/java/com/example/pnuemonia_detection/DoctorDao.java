@@ -19,4 +19,20 @@ public class DoctorDao {
             return false;
         }
     }
+    public int getDoctorIdByEmail(String email) {
+        String query = "SELECT iddoctors FROM pneumonia.doctors WHERE email = ?";
+        try (Connection connection = jdbc_conn.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("iddoctors");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Return -1 if doctor ID not found
+    }
 }
+

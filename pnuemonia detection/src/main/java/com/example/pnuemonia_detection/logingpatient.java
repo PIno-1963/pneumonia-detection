@@ -12,9 +12,9 @@ public class logingpatient extends HttpServlet {
         String password = request.getParameter("password");
 
         PatientDao patientDao = new PatientDao();
-        if (patientDao.login(email,password)) {
-            // Successful login, redirect to the patient's dashboard or another page
-            response.sendRedirect("patient_dashboard.jsp");
+        if (patientDao.login(email, password)) {
+            // Successful login, redirect to the patient information page with email parameter
+            response.sendRedirect("patientInfoServlet?email=" + email);
         } else {
             // Failed login, redirect back to the login page with an error message
             response.sendRedirect("patient-login.jsp?error=1");

@@ -24,7 +24,7 @@
       <select name="doctor_id" id="doctor_id" required>
         <option value="1">Doctor 1</option>
         <option value="2">Doctor 2</option>
-        <!-- Add more options as needed -->
+        <option value="3">Doctor 3</option>
       </select>
       <input type="submit" value="Create Account">
     </form>

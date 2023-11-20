@@ -5,8 +5,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet(name = "Servlet", value = "/Servlet")
 public class Servlet extends HttpServlet {
@@ -34,15 +32,23 @@ public class Servlet extends HttpServlet {
         String password = request.getParameter("password");
 
         DoctorDao doctorDAO = new DoctorDao();
+
+        // Assuming your login method returns true on successful login
         if (doctorDAO.login(email, password)) {
-            // Successful login, redirect to a doctor's dashboard or another page
-            response.sendRedirect("doctor_dashboard.jsp");
+            // Retrieve the doctor's ID using the new method
+            int doctorId = doctorDAO.getDoctorIdByEmail(email);
+
+            // Successful login, set the doctor's ID in the session
+            HttpSession session = request.getSession(true);
+            session.setAttribute("doctorId", doctorId);
+
+            response.sendRedirect("doctorPatientsServlet");
         } else {
             // Failed login, redirect back to the login page with an error message
             response.sendRedirect("doctor-login.jsp?error=1");
         }
-    }
-}
+    }}
+
 
 
 
