@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
+    <title>Choose Your Profile</title>
     <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-<div class="container">
+<h2 class="heading">Choose Your Profile</h2>
+<div class="container"><!-- Added heading here -->
     <form action="Servlet" method="get">
         <div class="icon-container" id="doctor-container">
             <div class="icon-label-container">
