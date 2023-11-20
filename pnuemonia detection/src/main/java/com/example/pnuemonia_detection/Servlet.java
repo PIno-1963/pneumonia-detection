@@ -27,6 +27,7 @@ public class Servlet extends HttpServlet {
         }
 
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -42,12 +43,14 @@ public class Servlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("doctorId", doctorId);
 
-            response.sendRedirect("doctorPatientsServlet");
+            // Redirect to the doctor's dashboard servlet
+            response.sendRedirect("doctorDashboardServlet");
         } else {
             // Failed login, redirect back to the login page with an error message
             response.sendRedirect("doctor-login.jsp?error=1");
         }
-    }}
+    }
+}
 
 
 
