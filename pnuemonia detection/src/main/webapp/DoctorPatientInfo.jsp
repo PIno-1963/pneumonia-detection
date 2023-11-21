@@ -43,6 +43,34 @@
             color: #3498db;
             text-decoration: none;
         }
+
+        /* Style for prescription input form */
+        .prescription-form {
+            margin-top: 20px;
+        }
+
+        .prescription-label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .prescription-input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Style for report button */
+        .report-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -61,14 +89,43 @@
         <div class="value">${patient.description}</div>
 
         <div class="label">X-Ray Link:</div>
-        <div class="value">${patient.xrayLink}</div>
+        <a href="${patient.xrayLink}">${patient.xrayLink}</a>
+
 
         <div class="label">Doctor:</div>
         <div class="value">${patient.doctor}</div>
+
+        <!-- Display existing prescription information -->
+        <div class="label">Prescription:</div>
+        <div class="value">${patient.prescription}</div>
     </div>
+
+    <!-- Prescription input form -->
+    <form class="prescription-form" action="${pageContext.request.contextPath}/InfoForDoctor" method="post">
+        <input type="hidden" name="email" value="${patient.email}">
+        <label class="prescription-label" for="prescription">Add Prescription:</label>
+        <textarea id="prescription" name="prescription" class="prescription-input" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Save Prescription">
+    </form>
+
+    <!-- Report button -->
+    <button class="report-button" onclick="generateReport()">Generate Report</button>
 
     <a class="back-link" href="javascript:history.back()">Back to Previous Page</a>
 </div>
+
+<!-- Add this script at the end of the body -->
+<script>
+    function generateReport() {
+        document.getElementById("report-form").submit();
+    }
+</script>
+
+<!-- Add this form at the end of the body -->
+<form id="report-form" action="${pageContext.request.contextPath}/GenerateReportServlet" method="post">
+    <input type="hidden" name="email" value="${patient.email}">
+</form>
 
 </body>
 </html>

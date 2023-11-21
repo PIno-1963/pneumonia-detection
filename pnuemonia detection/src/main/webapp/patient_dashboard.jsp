@@ -66,6 +66,10 @@
 
         <div class="label">Doctor:</div>
         <div class="value">${patient.doctor}</div>
+
+
+        <div class="label">Prescription from your doctor:</div>
+        <div class="value">${patient.prescription}</div>
     </div>
 
     <!-- Back link to the previous page -->
