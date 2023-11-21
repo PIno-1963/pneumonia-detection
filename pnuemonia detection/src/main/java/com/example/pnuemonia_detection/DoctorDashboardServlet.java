@@ -3,17 +3,13 @@ package com.example.pnuemonia_detection;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-// DoctorDashboardServlet.java
-
-// Import statements
 
 @WebServlet(name = "DoctorDashboardServlet", value = "/doctorDashboardServlet")
 public class DoctorDashboardServlet extends HttpServlet {
@@ -37,6 +33,38 @@ public class DoctorDashboardServlet extends HttpServlet {
         }
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve the checked patients' emails
+        String[] checkedPatients = request.getParameterValues("checkedPatients");
+
+        if (checkedPatients != null) {
+            // Update the 'checking' column for each checked patient in the database
+            Connection connection = null;
+
+            try {
+                connection = jdbc_conn.getConnection();
+
+                for (String email : checkedPatients) {
+                    updateCheckingColumn(connection, email, 1);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                // Close the connection in a finally block to ensure it's always closed
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        // Redirect back to the doctor's dashboard
+        response.sendRedirect("doctorDashboardServlet");
+    }
+
     private List<Patient> getDoctorPatients(int doctorId) {
         // Implement your logic to retrieve the list of patients for the doctor
         // Use the doctorId to query the database and retrieve the patient information
@@ -47,10 +75,10 @@ public class DoctorDashboardServlet extends HttpServlet {
         String password = "hamza";
 
         List<Patient> patientList = new ArrayList<>();
+        Connection connection = null;
 
         try {
-            // Use your jdbc_conn class to get a database connection
-            Connection connection = jdbc_conn.getConnection();
+            connection = jdbc_conn.getConnection();
 
             // Use a SQL query to retrieve the list of patients for the doctor
             String sql = "SELECT patients.* " +
@@ -68,22 +96,52 @@ public class DoctorDashboardServlet extends HttpServlet {
                         patient.setDescription(resultSet.getString("description"));
                         patient.setXrayLink(resultSet.getString("google_drive_link"));
                         patient.setEmail(resultSet.getString("email"));
+                        patient.setChecking(resultSet.getInt("checking"));
 
                         patientList.add(patient);
-                        for (Patient patient1 : patientList) {
-                            System.out.println("Patient: " + patient1.getNom() + " " + patient1.getPrenom() + " - " + patient1.getEmail());
-                        }
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle exceptions properly in a real-world application
+        } finally {
+            // Close the connection in a finally block to ensure it's always closed
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
-            // Close resources
-            connection.close();
+        return patientList;
+    }
+
+    private void updateCheckingColumn(Connection connection, String email, int checkValue) {
+        // Implement your logic to update the 'checking' column in the database
+        // Use the email to identify the patient
+
+        // Replace these placeholder values with your actual database credentials
+        String url = "jdbc:mysql://localhost:3306/pneumonia";
+        String username = "root";
+        String password = "hamza";
+
+        try {
+            // Use a SQL update statement to set the 'checking' column
+            String updateSql = "UPDATE pneumonia.patients SET checking = ? WHERE email = ?";
+
+            try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+                updateStatement.setInt(1, checkValue);
+                updateStatement.setString(2, email);
+
+                // Execute the update
+                updateStatement.executeUpdate();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             // Handle exceptions properly in a real-world application
         }
-
-        return patientList;
     }
 }

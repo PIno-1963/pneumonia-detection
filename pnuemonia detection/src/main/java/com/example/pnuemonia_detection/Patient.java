@@ -7,6 +7,7 @@ public class Patient {
     public String description;
     public String xrayLink;
     public String doctor;
+    public int checking;
 
     // Add getters and setters for each field
 
@@ -56,5 +57,13 @@ public class Patient {
 
     public void setDoctor(String doctor) {
         this.doctor = doctor;
+    }
+
+    public void setChecking(int checking) {
+        this.checking=checking;
+    }
+
+    public int getChecking() {
+        return checking;
     }
 }
