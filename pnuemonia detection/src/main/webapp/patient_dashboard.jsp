@@ -37,7 +37,8 @@
             margin-bottom: 10px;
         }
 
-        .back-link {
+        .back-link,
+        .logout-link {
             display: block;
             margin-top: 20px;
             color: #3498db;
@@ -67,7 +68,11 @@
         <div class="value">${patient.doctor}</div>
     </div>
 
+    <!-- Back link to the previous page -->
     <a class="back-link" href="javascript:history.back()">Back to Previous Page</a>
+
+    <!-- Logout link/button -->
+    <a class="logout-link" href="patientInfoServlet?email=${patient.email}&logout=true">Logout</a>
 </div>
 
 </body>
