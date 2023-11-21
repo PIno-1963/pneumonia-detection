@@ -1,4 +1,4 @@
-package com.example.pnuemonia_detection;// LogoutServlet.java
+package com.example.pnuemonia_detection;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "LogoutServlet", value = "/logoutServlet")
 public class LogoutServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Invalidate the session
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -19,6 +19,6 @@ public class LogoutServlet extends HttpServlet {
         }
 
         // Redirect to the login page
-        response.sendRedirect("doctor.jsp");
+        response.sendRedirect("index.jsp");
     }
 }

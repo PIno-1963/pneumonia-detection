@@ -13,9 +13,15 @@ import java.util.List;
 
 @WebServlet(name = "DoctorDashboardServlet", value = "/doctorDashboardServlet")
 public class DoctorDashboardServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve the doctor's ID from the session
         HttpSession session = request.getSession(false);
+
+        if ("true".equals(request.getParameter("logout"))) {
+            request.getRequestDispatcher("/logoutServlet").forward(request, response);
+            return;
+        }
 
         if (session != null && session.getAttribute("doctorId") != null) {
             int doctorId = (int) session.getAttribute("doctorId");
@@ -25,6 +31,7 @@ public class DoctorDashboardServlet extends HttpServlet {
 
             // Set the patient list as an attribute in the request
             request.setAttribute("patientList", patientList);
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/doctor_dashboard.jsp");
             dispatcher.forward(request, response);
         } else {

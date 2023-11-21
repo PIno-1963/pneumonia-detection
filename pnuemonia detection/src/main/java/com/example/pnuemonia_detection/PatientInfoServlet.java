@@ -12,6 +12,10 @@ import java.sql.ResultSet;
 @WebServlet(name = "PatientInfoServlet", value = "/patientInfoServlet")
 public class PatientInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if ("true".equals(request.getParameter("logout"))) {
+            request.getRequestDispatcher("/logoutServlet").forward(request, response);
+            return;
+        }
         String email = request.getParameter("email");
         System.out.println(email);// Retrieve patient information based on the email
         Patient patient = getPatientInfo(email);
@@ -27,9 +31,7 @@ public class PatientInfoServlet extends HttpServlet {
         // Use the email to query the database and retrieve the patient information
 
         // Replace these placeholder values with your actual database credentials
-        String url = "jdbc:mysql://localhost:3306/pneumonia";
-        String username = "root";
-        String password = "hamza";
+
 
         try {
             // Use your jdbc_conn class to get a database connection
