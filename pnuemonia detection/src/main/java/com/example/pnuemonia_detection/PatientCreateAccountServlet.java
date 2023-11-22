@@ -31,10 +31,14 @@ public class PatientCreateAccountServlet extends HttpServlet {
             return;
         }
 
+        // Retrieve selected symptoms from the hidden field
+        String selectedSymptoms = request.getParameter("selectedSymptoms");
+        System.out.println(selectedSymptoms);
+
         try (Connection connection = jdbc_conn.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "INSERT INTO patients (nom, prenom, email, password, description, google_drive_link, doctor_id) " +
-                             "VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                     "INSERT INTO patients (nom, prenom, email, password, description, google_drive_link, doctor_id, symptoms) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, email);
@@ -42,6 +46,7 @@ public class PatientCreateAccountServlet extends HttpServlet {
             preparedStatement.setString(5, description);
             preparedStatement.setString(6, googleDriveLink);
             preparedStatement.setInt(7, doctorId);
+            preparedStatement.setString(8, selectedSymptoms);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {

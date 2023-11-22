@@ -71,6 +71,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        /* Style for AI-Model checkboxes */
+        .ai-model-checkboxes {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +96,20 @@
         <div class="label">X-Ray Link:</div>
         <a href="${patient.xrayLink}">${patient.xrayLink}</a>
 
+        <div class="label">AI-Model:</div>
+        <form action="${pageContext.request.contextPath}/UpdateAIModelServlet" method="post" class="ai-model-checkboxes">
+            <label>
+                <input type="radio" name="aiModel" value="1" ${patient.modelValue == 1 ? 'checked' : ''}>
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="aiModel" value="0" ${patient.modelValue == 0 ? 'checked' : ''}>
+                No
+            </label>
+            <br>
+            <input type="hidden" name="email" value="${patient.email}">
+            <input type="submit" value="Save AI-Model">
+        </form>
 
         <div class="label">Doctor:</div>
         <div class="value">${patient.doctor}</div>

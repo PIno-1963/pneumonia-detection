@@ -56,6 +56,7 @@ public class PatientInfoServlet extends HttpServlet {
                         patient.setEmail(resultSet.getString("email"));
                         patient.setDoctor(resultSet.getString("doctor_name")); // Use the alias for the doctor's name
                         patient.setPrescription(resultSet.getString("prescription"));
+                        patient.setChecking(resultSet.getInt("Checking"));
                         // Close resources
                         resultSet.close();
 
