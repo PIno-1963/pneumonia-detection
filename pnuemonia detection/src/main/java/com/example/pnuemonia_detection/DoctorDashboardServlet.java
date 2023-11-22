@@ -57,7 +57,7 @@ public class DoctorDashboardServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } finally {
-                // Close the connection in a finally block to ensure it's always closed
+
                 if (connection != null) {
                     try {
                         connection.close();
@@ -137,7 +137,7 @@ public class DoctorDashboardServlet extends HttpServlet {
 
         try {
             // Use a SQL update statement to set the 'checking' column
-            String updateSql = "UPDATE pneumonia.patients SET checking = ? WHERE email = ?";
+            String updateSql = "UPDATE pneumonia.patients SET patients.Checking = ? WHERE patients.email = ?";
 
             try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
                 updateStatement.setInt(1, checkValue);

@@ -1,4 +1,6 @@
+<%@ page import="com.example.pnuemonia_detection.Patient" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% Patient patient = (Patient) request.getAttribute("patient"); %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -38,11 +40,13 @@
         }
 
         .back-link,
-        .logout-link {
+        .logout-link,
+        .generate-report-button {
             display: block;
             margin-top: 20px;
             color: #3498db;
             text-decoration: none;
+            text-align: center;
         }
     </style>
 </head>
@@ -66,7 +70,18 @@
 
         <div class="label">Doctor:</div>
         <div class="value">${patient.doctor}</div>
+
+        <div class="label">Prescription from your doctor:</div>
+        <div class="value">${patient.prescription}</div>
     </div>
+
+    <% if (patient.checking == 1) { %>
+    <!-- Button to generate and download the report -->
+    <form action="${pageContext.request.contextPath}/GenerateReportServlet" method="post" target="_blank">
+        <input type="hidden" name="email" value="${patient.email}">
+        <button class="generate-report-button" type="submit">Generate and Download Report</button>
+    </form>
+    <% } %>
 
     <!-- Back link to the previous page -->
     <a class="back-link" href="javascript:history.back()">Back to Previous Page</a>

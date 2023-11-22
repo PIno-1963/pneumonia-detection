@@ -8,6 +8,10 @@ public class Patient {
     public String xrayLink;
     public String doctor;
     public int checking;
+    public String prescription;
+
+    public int modelValue;
+    public String review;
 
     // Add getters and setters for each field
 
@@ -66,4 +70,19 @@ public class Patient {
     public int getChecking() {
         return checking;
     }
+    public String getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
+    public int getModelValue() {
+        return modelValue;
+    }
+
+    public void setModelValue(int modelValue) {
+        this.modelValue = modelValue;
+    }
 }
+
