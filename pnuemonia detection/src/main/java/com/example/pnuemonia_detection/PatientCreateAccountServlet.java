@@ -27,7 +27,11 @@ public class PatientCreateAccountServlet extends HttpServlet {
 
         // Check if the email already exists
         if (isEmailExists(email)) {
-            response.sendRedirect("create-account.jsp?error=email_exists");
+            request.setAttribute("emailError", "Email already exists!");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    "create_account" +
+                            ".jsp");
+            dispatcher.forward(request, response);
             return;
         }
 

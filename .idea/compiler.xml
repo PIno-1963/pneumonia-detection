@@ -9,8 +9,5 @@
         <module name="pnuemonia_detection" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="pnuemonia_detection" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
