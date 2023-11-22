@@ -36,6 +36,10 @@
         <option value="3">Doctor 3</option>
       </select>
 
+      <!-- Age input field -->
+      <label for="age">Age:</label>
+      <input type="number" name="age" id="age" required>
+
       <label>Symptoms:</label>
       <input type="checkbox" name="symptoms" value="frissons"> Frissons
       <input type="checkbox" name="symptoms" value="toux"> Toux

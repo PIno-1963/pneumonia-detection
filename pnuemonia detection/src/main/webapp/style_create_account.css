@@ -1,3 +1,4 @@
+/* Reset styles for all elements */
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@
     outline: none;
 }
 
+/* Body styles */
 body {
     width: 100%;
     min-height: 100vh;
@@ -18,6 +20,7 @@ body {
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
+/* Container styles */
 .container {
     width: 90%;
     max-width: 600px;
@@ -28,20 +31,23 @@ body {
     border-radius: 10px;
 }
 
+/* Header styles */
 .header {
     width: 100%;
     padding: 20px 0;
     text-align: center;
     font-size: 24px;
-    background-color: #3498db;
+    background-color: #1d3654;
     color: #fff;
 }
 
+/* Content styles */
 .content {
     width: 100%;
     padding: 20px;
 }
 
+/* Form styles */
 .create-account-form {
     display: flex;
     flex-direction: column;
@@ -87,11 +93,12 @@ body {
     width: 100%;
 }
 
+/* Additional container style for consistency */
 .creat-account {
     width: 100%;
     padding: 20px;
     text-align: center;
     font-size: 18px;
-    background-color: #3498db;
+    background-color: #1d3654;
     color: #fff;
 }

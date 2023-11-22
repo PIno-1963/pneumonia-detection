@@ -10,14 +10,23 @@ public class Patient {
     public int checking;
     public String prescription;
 
+    public String symptoms;
+
     public int modelValue;
     public String review;
 
-    // Add getters and setters for each field
+    public String age;
 
+    // Add getters and setters for each field
+    public String getAge(){return age;}
+
+    public void setAge(String age){this.age=age;}
     public String getNom() {
         return nom;
     }
+
+    public String getSymptoms(){return symptoms;}
+    public void setSymptoms(String symptoms){this.symptoms=symptoms;}
 
     public void setNom(String nom) {
         this.nom = nom;

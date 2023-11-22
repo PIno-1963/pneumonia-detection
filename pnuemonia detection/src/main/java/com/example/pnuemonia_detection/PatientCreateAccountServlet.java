@@ -22,6 +22,7 @@ public class PatientCreateAccountServlet extends HttpServlet {
         String googleDriveLink = request.getParameter("google_drive_link");
         int doctorId = Integer.parseInt(request.getParameter("doctor_id"));
 
+
         // Hash the password using BCrypt
         String hashedPassword = BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
 
@@ -33,12 +34,12 @@ public class PatientCreateAccountServlet extends HttpServlet {
 
         // Retrieve selected symptoms from the hidden field
         String selectedSymptoms = request.getParameter("selectedSymptoms");
-        System.out.println(selectedSymptoms);
+        int age = Integer.parseInt(request.getParameter("age"));
 
         try (Connection connection = jdbc_conn.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "INSERT INTO patients (nom, prenom, email, password, description, google_drive_link, doctor_id, symptoms) " +
-                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+                     "INSERT INTO patients (nom, prenom, email, password, description, google_drive_link, doctor_id, symptoms, age) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, email);
@@ -47,6 +48,7 @@ public class PatientCreateAccountServlet extends HttpServlet {
             preparedStatement.setString(6, googleDriveLink);
             preparedStatement.setInt(7, doctorId);
             preparedStatement.setString(8, selectedSymptoms);
+            preparedStatement.setInt(9, age);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
