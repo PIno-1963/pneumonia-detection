@@ -11,7 +11,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
 - [Usage](#usage)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [CSS Styling](#css-styling)
+
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
     - Confirm AI model analysis of X-ray images.
     - Generate reports for patients.
 
-Technologies Used
+## Technologies Used
 
   - Java JEE
 
@@ -109,9 +109,12 @@ Technologies Used
   -Apache Tomcat
 
 
+  ![TOMCAT](tomcat.png)
+
+
 
   
-    ![TOMCAT](tomcat.png)
+    
 
 
 
