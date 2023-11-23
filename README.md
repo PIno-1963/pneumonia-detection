@@ -70,14 +70,47 @@ A Java JEE web application that connects suspected pneumonia patients with their
 Technologies Used
 
   - Java JEE
+
     ![JEE](jee.png)
+
+
+    
   - JavaServer Pages (JSP)
+
+
+
+
+
     ![JSP](jsp.png)
+
+
+
+    
   - MySQL Database
+
+
+
+
     ![MYSQL](mysql.png)
+
+
+
+    
   - CSS for styling
+
+
+
+
+
     ![CSS](css.png)
+
+
+    
   -Apache Tomcat
+
+
+
+  
     ![TOMCAT](tomcat.png)
 
 
