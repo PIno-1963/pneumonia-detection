@@ -5,19 +5,31 @@ public class Patient {
     public String prenom;
     public String email;
     public String description;
+
     public String xrayLink;
     public String doctor;
     public int checking;
     public String prescription;
 
+    public String symptoms;
+
     public int modelValue;
     public String review;
 
-    // Add getters and setters for each field
+    public String xrayImagePath;
 
+    public String age;
+
+
+    public String getAge(){return age;}
+
+    public void setAge(String age){this.age=age;}
     public String getNom() {
         return nom;
     }
+
+    public String getSymptoms(){return symptoms;}
+    public void setSymptoms(String symptoms){this.symptoms=symptoms;}
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -83,6 +95,13 @@ public class Patient {
 
     public void setModelValue(int modelValue) {
         this.modelValue = modelValue;
+    }
+
+    public void setXrayImagePath(String xrayImagePath) {
+        this.xrayImagePath=xrayImagePath;
+    }
+    public String getXrayImagePath() {
+        return xrayImagePath;
     }
 }
 

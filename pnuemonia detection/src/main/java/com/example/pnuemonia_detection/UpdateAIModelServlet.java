@@ -1,5 +1,4 @@
 package com.example.pnuemonia_detection;
-
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -7,14 +6,17 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @WebServlet(name = "UpdateAIModelServlet", value = "/UpdateAIModelServlet")
 public class UpdateAIModelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
-        int modelValue = "yes".equalsIgnoreCase(request.getParameter("aiModel")) ? 1 : 0;
+        String aiModelValue = request.getParameter("aiModel");
 
+        // Convert the aiModelValue to 1 for "yes" and 0 for "no"
+        int modelValue = "1".equals(aiModelValue) ? 1 : 0;
+        System.out.println(modelValue);
         // Update the AI-Model value in the database
         updateAIModel(email, modelValue);
 
@@ -31,19 +33,14 @@ public class UpdateAIModelServlet extends HttpServlet {
         String username = "root";
         String password = "hamza";
 
-        try {
-            Connection connection = jdbc_conn.getConnection();
+        try (Connection connection = jdbc_conn.getConnection();
+             PreparedStatement statement = connection.prepareStatement("UPDATE pneumonia.patients SET model_val = ? WHERE email = ?")) {
 
-            String sql = "UPDATE pneumonia.patients SET model_val = ? WHERE email = ?";
+            statement.setInt(1, modelValue);
+            statement.setString(2, email);
+            statement.executeUpdate();
 
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, modelValue);
-                statement.setString(2, email);
-                statement.executeUpdate();
-            }
-
-            connection.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             // Handle exceptions properly in a real-world application
         }

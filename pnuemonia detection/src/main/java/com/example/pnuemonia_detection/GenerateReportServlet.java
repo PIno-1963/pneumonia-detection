@@ -25,7 +25,8 @@ public class GenerateReportServlet extends HttpServlet {
 
         // Retrieve patient information based on the email
         Patient patient = getPatientInfo(email);
-
+        String full_name;
+        full_name=patient.getNom()+"_"+patient.getPrenom();
         // Generate the medical report as HTML
         String report = generateMedicalReport(patient);
 
@@ -34,7 +35,7 @@ public class GenerateReportServlet extends HttpServlet {
 
         // Set the content type and headers for PDF response
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=MedicalReport.pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=MedicalReport_"+full_name+".pdf");
 
         // Get the response output stream
         try (OutputStream out = response.getOutputStream()) {
@@ -46,13 +47,6 @@ public class GenerateReportServlet extends HttpServlet {
     }
 
     private Patient getPatientInfo(String email) {
-        // Implement your patient information retrieval logic here
-        // Use the email to query the database and retrieve the patient information
-
-        // Replace these placeholder values with your actual database credentials
-        String url = "jdbc:mysql://localhost:3306/pneumonia";
-        String username = "root";
-        String password = "hamza";
 
         Patient patient = new Patient();
 
@@ -71,8 +65,11 @@ public class GenerateReportServlet extends HttpServlet {
                         patient.setNom(resultSet.getString("nom"));
                         patient.setPrenom(resultSet.getString("prenom"));
                         patient.setDescription(resultSet.getString("description"));
-                        patient.setXrayLink(resultSet.getString("google_drive_link"));
                         patient.setEmail(resultSet.getString("email"));
+                        patient.setPrescription(resultSet.getString("prescription"));
+                        patient.setSymptoms(resultSet.getString("symptoms"));
+
+
 
                         // Add more fields as needed
 
@@ -99,14 +96,11 @@ public class GenerateReportServlet extends HttpServlet {
         // Report header
         report.append("<h2>Medical Report</h2>");
         report.append("<p><strong>Date of Generation:</strong> ").append(getCurrentDate()).append("</p>");
-
-        // Patient information
-        report.append("<h3>Patient Information</h3>");
-        report.append("<p><strong>Name:</strong> ").append(patient.getNom()).append(" ").append(patient.getPrenom()).append("</p>");
+        report.append("<p>le patient  ").append(patient.getNom()).append(" ").append(patient.getPrenom()).append("<p>il presente les symptoms suivant").append(patient.getSymptoms()).append("</p>");;
         report.append("<p><strong>Email:</strong> ").append(patient.getEmail()).append("</p>");
         report.append("<p><strong>Description:</strong> ").append(patient.getDescription()).append("</p>");
-        report.append("<p><strong>X-Ray Link:</strong> ").append(patient.getXrayLink()).append("</p>");
-        // ... Include other patient information in a similar manner
+
+
 
         // Add more sections as needed
 

@@ -106,7 +106,7 @@
                 <input type="checkbox" class="checkbox" name="checkedPatients" value="<%= patient.getEmail() %>"
                        <% if (patient.getChecking() == 1) { %>checked<% } %>>
                 <div onclick="window.location.href='DoctorPatientInfoServlet?email=<%= patient.getEmail() %>'">
-                    <%= patient.getNom() %> <%= patient.getPrenom() %> - <%= patient.getEmail() %>
+                   <strong> <%= patient.getNom() %> <%= patient.getPrenom() %></strong>
                 </div>
             </li>
             <% } %>

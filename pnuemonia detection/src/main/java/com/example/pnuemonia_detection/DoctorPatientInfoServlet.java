@@ -1,16 +1,23 @@
 package com.example.pnuemonia_detection;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @WebServlet(name = "DoctorPatientInfoServlet", value = "/DoctorPatientInfoServlet")
 public class DoctorPatientInfoServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
 
@@ -23,6 +30,7 @@ public class DoctorPatientInfoServlet extends HttpServlet {
         // Forward the request to the doctor's patient information JSP page
         request.getRequestDispatcher("/DoctorPatientInfo.jsp").forward(request, response);
     }
+
 
     private Patient getPatientInfo(String email) {
         // Implement your patient information retrieval logic here
@@ -52,11 +60,10 @@ public class DoctorPatientInfoServlet extends HttpServlet {
                         patient.setNom(resultSet.getString("nom"));
                         patient.setPrenom(resultSet.getString("prenom"));
                         patient.setDescription(resultSet.getString("description"));
-                        patient.setXrayLink(resultSet.getString("google_drive_link"));
                         patient.setEmail(resultSet.getString("email"));
-                        patient.setDoctor(resultSet.getString("doctor_name"));
-                        patient.setDoctor(resultSet.getString("prescription"));// Use the alias for the doctor's name
-
+                        patient.setDoctor(resultSet.getString("doctor_name")); // Ensure you are setting the doctor's name
+                        patient.setPrescription(resultSet.getString("prescription"));
+                        patient.setXrayImagePath(resultSet.getString("xray_image_path"));
                         // Close resources
                         resultSet.close();
 
@@ -73,5 +80,4 @@ public class DoctorPatientInfoServlet extends HttpServlet {
         }
 
         return null;
-    }
-}
+    }}

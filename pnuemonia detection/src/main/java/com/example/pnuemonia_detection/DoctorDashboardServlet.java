@@ -101,7 +101,6 @@ public class DoctorDashboardServlet extends HttpServlet {
                         patient.setNom(resultSet.getString("nom"));
                         patient.setPrenom(resultSet.getString("prenom"));
                         patient.setDescription(resultSet.getString("description"));
-                        patient.setXrayLink(resultSet.getString("google_drive_link"));
                         patient.setEmail(resultSet.getString("email"));
                         patient.setChecking(resultSet.getInt("checking"));
 
