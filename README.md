@@ -25,7 +25,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your_username/pneumonia-detection-java.git
+   git clone https://github.com/PIno-1963/pneumonia-detection.git
    ```
 2. Open the project in your Java IDE (Eclipse, IntelliJ, etc.).
 
