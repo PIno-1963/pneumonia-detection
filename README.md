@@ -29,9 +29,11 @@ A Java JEE web application that connects suspected pneumonia patients with their
    ```
 2. Open the project in your Java IDE (Eclipse, IntelliJ, etc.).
 
-3. Configure the database connection in the src/main/resources/application.properties file.
+3. Configure the database connection in the Db.properties file.
 
-4. Deploy the project on your local Apache Tomcat server
+4. Change uploadDirectory (in src/main/java/com/example/pnuemonia_detection/PatientCreateAccountServlet.java) to your desired local directory.
+
+5. Deploy the project on your local Apache Tomcat server
 
 
 ## Database Setup
