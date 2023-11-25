@@ -36,8 +36,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
 
 ## Database Setup
 
-    Create a MySQL database named pneumonia.
-    Run the SQL scripts in the database-scripts folder to create the necessary tables.
+    Run the script in pneumonia.sql file to get the schema with test data.
 
 ## Usage
 
