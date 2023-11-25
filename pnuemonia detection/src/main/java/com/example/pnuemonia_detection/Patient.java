@@ -5,7 +5,7 @@ public class Patient {
     public String prenom;
     public String email;
     public String description;
-
+    public String ai_result;
     public String xrayLink;
     public String doctor;
     public int checking;
@@ -103,5 +103,8 @@ public class Patient {
     public String getXrayImagePath() {
         return xrayImagePath;
     }
+    public void setAi_result(String ai_result){this.ai_result=ai_result;}
+    public String getAi_result(){return ai_result;}
 }
+
 

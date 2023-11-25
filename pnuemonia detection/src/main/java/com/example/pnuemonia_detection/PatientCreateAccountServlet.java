@@ -65,7 +65,6 @@ public class PatientCreateAccountServlet extends HttpServlet {
             preparedStatement.setString(3, email);
             preparedStatement.setString(4, hashedPassword); // Store the hashed password
             preparedStatement.setString(5, description);
-            preparedStatement.setString(6, googleDriveLink);
             preparedStatement.setInt(7, doctorId);
             preparedStatement.setString(8, selectedSymptoms);
             preparedStatement.setInt(9, age); // Set the age parameter

@@ -55,7 +55,10 @@ public class GenerateReportServlet extends HttpServlet {
             Connection connection = jdbc_conn.getConnection();
 
             // Use a SQL query to retrieve patient information
-            String sql = "SELECT * FROM pneumonia.patients WHERE email = ?";
+            String sql = "SELECT patients.*, doctors.name AS doctor_name " +
+                    "FROM pneumonia.patients " +
+                    "INNER JOIN pneumonia.doctors ON patients.doctor_id = doctors.iddoctors " +
+                    "WHERE patients.email = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, email);
@@ -66,14 +69,15 @@ public class GenerateReportServlet extends HttpServlet {
                         patient.setPrenom(resultSet.getString("prenom"));
                         patient.setDescription(resultSet.getString("description"));
                         patient.setEmail(resultSet.getString("email"));
+                        patient.setDoctor(resultSet.getString("doctor_name"));
                         patient.setPrescription(resultSet.getString("prescription"));
                         patient.setSymptoms(resultSet.getString("symptoms"));
+                        patient.setAi_result(resultSet.getString("ai_result"));
+                        patient.setModelValue(Integer.parseInt("model_val"));
 
 
 
-                        // Add more fields as needed
 
-                        // Close resources
                         resultSet.close();
                     }
                 }
@@ -89,23 +93,7 @@ public class GenerateReportServlet extends HttpServlet {
         return patient;
     }
 
-    private String generateMedicalReport(Patient patient) {
-        // Implement the logic to generate a medical report
-        StringBuilder report = new StringBuilder();
 
-        // Report header
-        report.append("<h2>Medical Report</h2>");
-        report.append("<p><strong>Date of Generation:</strong> ").append(getCurrentDate()).append("</p>");
-        report.append("<p>le patient  ").append(patient.getNom()).append(" ").append(patient.getPrenom()).append("<p>il presente les symptoms suivant").append(patient.getSymptoms()).append("</p>");;
-        report.append("<p><strong>Email:</strong> ").append(patient.getEmail()).append("</p>");
-        report.append("<p><strong>Description:</strong> ").append(patient.getDescription()).append("</p>");
-
-
-
-        // Add more sections as needed
-
-        return report.toString();
-    }
 
     private String getCurrentDate() {
         // Get the current date in the desired format
@@ -137,4 +125,43 @@ public class GenerateReportServlet extends HttpServlet {
 
         return new byte[0];
     }
-}
+    private String generateMedicalReport(Patient patient) {
+        // Implement the logic to generate a medical report
+        StringBuilder report = new StringBuilder();
+
+
+        report.append("<h2>Rapport Médical</h2>");
+        report.append("<p><strong>Date de Génération:</strong> ").append(getCurrentDate()).append("</p>");
+        report.append("<p><strong>Nom et Prénom:</strong> ").append(patient.getNom()).append(" ").append(patient.getPrenom()).append("</p>");
+        report.append("<p><strong>Âge:</strong> ").append(patient.getAge()).append("</p>");
+        report.append("<p><strong>Symptômes:</strong> ").append(patient.getSymptoms()).append("</p>");
+
+        if ((patient.getModelValue() == 1 && "pneumonia".equalsIgnoreCase(patient.getAi_result())) || (patient.getModelValue() == 0 && "not pneumonia".equalsIgnoreCase(patient.getAi_result()))) {
+            report.append("<h3>Interprétation:</h3>");
+            report.append("<p>La radiographie pulmonaire montre des opacités réticulonodulaires bilatérales, suggestives d'une pneumonie.</p>");
+
+            // Add conclusion
+            report.append("<h3>Conclusion:</h3>");
+            report.append("<p>Pneumonie bilatérale.</p>");
+
+            // Add recommendations
+
+
+        } else {
+            report.append("<h3>Interprétation:</h3>");
+            report.append("<p>La radiographie pulmonaire ne montre pas d'opacités suggestives de pneumonie.</p>");}
+
+        report.append("<h3>Recommandations:</h3>");
+        report.append("<p>").append(patient.getPrescription()).append("</p>");
+
+
+            report.append("<h3>Signature:</h3>");
+            report.append("<p>").append(patient.getDoctor()).append(", Radiologue</p>");
+
+
+
+            // Add more sections as needed
+
+            return report.toString();}}
+
+
