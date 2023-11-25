@@ -73,7 +73,9 @@ public class GenerateReportServlet extends HttpServlet {
                         patient.setPrescription(resultSet.getString("prescription"));
                         patient.setSymptoms(resultSet.getString("symptoms"));
                         patient.setAi_result(resultSet.getString("ai_result"));
-                        patient.setModelValue(Integer.parseInt("model_val"));
+                        patient.setModelValue(resultSet.getInt("model_val"));
+                        patient.setAge(resultSet.getInt("age"));
+                        System.out.println(patient.age);
 
 
 
@@ -136,7 +138,7 @@ public class GenerateReportServlet extends HttpServlet {
         report.append("<p><strong>Âge:</strong> ").append(patient.getAge()).append("</p>");
         report.append("<p><strong>Symptômes:</strong> ").append(patient.getSymptoms()).append("</p>");
 
-        if ((patient.getModelValue() == 1 && "pneumonia".equalsIgnoreCase(patient.getAi_result())) || (patient.getModelValue() == 0 && "not pneumonia".equalsIgnoreCase(patient.getAi_result()))) {
+        if ((patient.getModelValue() == 1 && "pneumonia".equalsIgnoreCase(patient.getAi_result())) || (patient.getModelValue() == 0 && "no pneumonia".equalsIgnoreCase(patient.getAi_result()))) {
             report.append("<h3>Interprétation:</h3>");
             report.append("<p>La radiographie pulmonaire montre des opacités réticulonodulaires bilatérales, suggestives d'une pneumonie.</p>");
 

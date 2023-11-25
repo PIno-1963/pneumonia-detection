@@ -31,7 +31,7 @@ public class UpdateAIModelServlet extends HttpServlet {
 
         String url = "jdbc:mysql://localhost:3306/pneumonia";
         String username = "root";
-        String password = "hamza";
+        String password = "root";
 
         try (Connection connection = jdbc_conn.getConnection();
              PreparedStatement statement = connection.prepareStatement("UPDATE pneumonia.patients SET model_val = ? WHERE email = ?")) {

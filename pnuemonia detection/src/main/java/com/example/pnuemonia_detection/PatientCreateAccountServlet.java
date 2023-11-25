@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 @WebServlet("/PatientCreateAccountServlet")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5,   // 5 MB
@@ -29,6 +30,7 @@ public class PatientCreateAccountServlet extends HttpServlet {
         String googleDriveLink = request.getParameter("google_drive_link");
         int doctorId = Integer.parseInt(request.getParameter("doctor_id"));
         int age = Integer.parseInt(request.getParameter("age")); // Add age parameter
+        String ai = aiResult();
 
         // Hash the password using BCrypt
         String hashedPassword = BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
@@ -48,7 +50,7 @@ public class PatientCreateAccountServlet extends HttpServlet {
         // Handle file upload for X-ray image
         Part xrayImagePart = request.getPart("xray_image");
         String xrayImageFileName = extractFileName(xrayImagePart);
-        String uploadDirectory = "C:/Users/hamza/OneDrive/Bureau/saving_xray";
+        String uploadDirectory = "C:\\Users\\hp\\Desktop\\image db";
         String xrayImageSavePath = uploadDirectory + File.separator + xrayImageFileName;
 
         // Save the X-ray image to the server
@@ -58,8 +60,10 @@ public class PatientCreateAccountServlet extends HttpServlet {
 
         try (Connection connection = jdbc_conn.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "INSERT INTO patients (nom, prenom, email, password, description, google_drive_link, doctor_id, symptoms, age, xray_image_path) " +
-                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                     "INSERT INTO patients (nom, prenom, email, password, " +
+                             "description, google_drive_link, doctor_id, " +
+                             "symptoms, age, xray_image_path,ai_result) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)")) {
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, email);
@@ -68,7 +72,9 @@ public class PatientCreateAccountServlet extends HttpServlet {
             preparedStatement.setInt(7, doctorId);
             preparedStatement.setString(8, selectedSymptoms);
             preparedStatement.setInt(9, age); // Set the age parameter
-            preparedStatement.setString(10, xrayImageSavePath); // Save the X-ray image path
+            preparedStatement.setString(10, xrayImageSavePath);
+            preparedStatement.setString(11, ai);// Save the AI model diagnosis
+            preparedStatement.setString(6, googleDriveLink);
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
@@ -106,4 +112,14 @@ public class PatientCreateAccountServlet extends HttpServlet {
         }
         return "";
     }
+    private String  aiResult(){
+
+        // Due to problems regarding our model's hosting we decided to
+        // generate random values instead as a simulation
+        Random random = new Random();
+        int randomNumber = random.nextInt(2); // Generates 0 or 1
+
+        return (randomNumber == 0) ? "pneumonia" : "no pneumonia";
+    }
 }
+

@@ -39,7 +39,7 @@ public class DoctorPatientInfoServlet extends HttpServlet {
         // Replace these placeholder values with your actual database credentials
         String url = "jdbc:mysql://localhost:3306/pneumonia";
         String username = "root";
-        String password = "hamza";
+        String password = "root";
 
         try {
             // Use your jdbc_conn class to get a database connection

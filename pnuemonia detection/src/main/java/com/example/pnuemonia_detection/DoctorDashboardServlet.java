@@ -79,7 +79,7 @@ public class DoctorDashboardServlet extends HttpServlet {
         // Replace these placeholder values with your actual database credentials
         String url = "jdbc:mysql://localhost:3306/pneumonia";
         String username = "root";
-        String password = "hamza";
+        String password = "root";
 
         List<Patient> patientList = new ArrayList<>();
         Connection connection = null;
@@ -132,7 +132,7 @@ public class DoctorDashboardServlet extends HttpServlet {
         // Replace these placeholder values with your actual database credentials
         String url = "jdbc:mysql://localhost:3306/pneumonia";
         String username = "root";
-        String password = "hamza";
+        String password = "root";
 
         try {
             // Use a SQL update statement to set the 'checking' column
