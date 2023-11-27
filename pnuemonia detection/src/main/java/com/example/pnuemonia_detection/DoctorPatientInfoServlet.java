@@ -64,6 +64,7 @@ public class DoctorPatientInfoServlet extends HttpServlet {
                         patient.setDoctor(resultSet.getString("doctor_name"));
                         patient.setPrescription(resultSet.getString("prescription"));// Use the alias for the doctor's name
                         patient.setXrayImagePath(resultSet.getString("xray_image_path"));
+                        patient.setAi_result(resultSet.getString("ai_result"));
                         // Close resources
                         resultSet.close();
 
