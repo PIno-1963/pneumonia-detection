@@ -16,7 +16,7 @@
     }
 
     function validateEmail(email) {
-      const regex = /^[\w-]+@[\w-]+\.[a-zA-Z]+$/;
+      const regex = /^[\w.-]+@[\w-]+\.[a-zA-Z]+$/;
       const input = document.getElementById('email');
       const errorElement = document.getElementById('emailError');
       if (regex.test(email)) {
