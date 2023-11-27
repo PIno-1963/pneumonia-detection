@@ -56,7 +56,7 @@ CREATE TABLE `patients` (
   `prenom` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `google_drive_link` varchar(45) DEFAULT NULL,
   `doctor_id` varchar(45) DEFAULT NULL,
   `Checking` int DEFAULT NULL,
