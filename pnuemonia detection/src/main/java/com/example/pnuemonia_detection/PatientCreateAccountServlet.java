@@ -61,20 +61,20 @@ public class PatientCreateAccountServlet extends HttpServlet {
         try (Connection connection = jdbc_conn.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "INSERT INTO patients (nom, prenom, email, password, " +
-                             "description, google_drive_link, doctor_id, " +
+                             "description, doctor_id, " +
                              "symptoms, age, xray_image_path,ai_result) " +
-                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)")) {
+                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, email);
             preparedStatement.setString(4, hashedPassword); // Store the hashed password
             preparedStatement.setString(5, description);
-            preparedStatement.setInt(7, doctorId);
-            preparedStatement.setString(8, selectedSymptoms);
-            preparedStatement.setInt(9, age); // Set the age parameter
-            preparedStatement.setString(10, xrayImageSavePath);
-            preparedStatement.setString(11, ai);// Save the AI model diagnosis
-            preparedStatement.setString(6, googleDriveLink);
+            preparedStatement.setInt(6, doctorId);
+            preparedStatement.setString(7, selectedSymptoms);
+            preparedStatement.setInt(8, age); // Set the age parameter
+            preparedStatement.setString(9, xrayImageSavePath);
+            preparedStatement.setString(10, ai);// Save the AI model diagnosis
+            
 
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
