@@ -100,6 +100,8 @@
         <div class="value">${patient.description}</div>
 
         <div class="label">AI-Model:</div>
+        <div class="label">Name:</div>
+        <div class="value">${patient.ai_result}</div>
         <form action="${pageContext.request.contextPath}/UpdateAIModelServlet" method="post" class="ai-model-checkboxes">
             <label>
                 <input type="radio" name="aiModel" value="1" ${patient.modelValue == 1 ? 'checked' : ''}>
