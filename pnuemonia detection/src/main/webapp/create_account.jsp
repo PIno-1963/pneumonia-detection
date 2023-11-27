@@ -50,7 +50,6 @@
       <label for="password">Password:</label><input type="password" name="password" id="password" required>
       <label for="age">Age:</label><input type="text" name="age" id="age" required>
       <label for="description">Description:</label><textarea name="description" id="description" required></textarea>
-      <label for="google_drive_link">Google Drive Link:</label><input type="text" name="google_drive_link" id="google_drive_link" required>
       <label for="doctor_id">Choose a Doctor:</label>
       <select name="doctor_id" id="doctor_id" required>
         <option value="1">Doctor 1</option>
