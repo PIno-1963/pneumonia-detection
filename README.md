@@ -72,7 +72,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
 
   - Java JEE
 
-    ![JEE](jee.png)
+    ![JEE](images/jee.png)
 
 
     
@@ -82,7 +82,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
 
 
 
-    ![JSP](jsp.png)
+    ![JSP](images/jsp.png)
 
 
 
@@ -92,7 +92,7 @@ A Java JEE web application that connects suspected pneumonia patients with their
 
 
 
-    ![MYSQL](mysql.png)
+    ![MYSQL](images/mysql.png)
 
 
 
@@ -103,14 +103,22 @@ A Java JEE web application that connects suspected pneumonia patients with their
 
 
 
-    ![CSS](css.png)
+    ![CSS](images/css.png)
 
 
     
   -Apache Tomcat
 
 
-  ![TOMCAT](tomcat.png)
+  ![TOMCAT](images/tomcat.png)
+
+
+
+  -Fast API
+
+
+
+  ![FASTAPI](images/fast_api.png)
 
 
 
