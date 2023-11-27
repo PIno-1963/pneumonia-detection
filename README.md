@@ -122,6 +122,11 @@ A Java JEE web application that connects suspected pneumonia patients with their
 
 
 
+
+## Credits
+
+Hamza MOUSSAOUI,    Omar SIF EDDINE,    Brahim BENTALEB
+
   
     
 
